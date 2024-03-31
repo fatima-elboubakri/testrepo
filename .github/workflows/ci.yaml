@@ -1,1 +1,47 @@
-
+name: ci build
+'on':
+  pull_request:
+    types:
+      - opned
+      - reopned
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubunto-latest
+    container: 'python:3.9-slim'
+    services:
+      redis:
+        image: redis:6-alpine
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: 1234567890
+          POSTGRES_DB: testdb
+        ports:
+          - '5432:5432'
+        options: >-
+          -- health-cmd pg_isready  
+          -- health-interval 10s  
+          -- health-timeout 5s
+          -- health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: install dependances
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install requirements.txt
+      - name: run unit tests with nose
+        id: testing
+        run: nosetests
+        env:
+          DATABASE_URI: 'redis//redice:6379'
+          FLASK_APP: 'service:app'
+      - name: upload code couverage
+        uses: codecov/codecov-action@v2
+        with:
+          version: v0.1.13
+  publish:
+    runs-on: ubunto-latest
+    needs: build
+    #steps: null
