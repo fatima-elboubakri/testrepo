@@ -39,6 +39,6 @@ jobs:
         #  DATABASE_URI: 'redis//redice:6379'
         #  FLASK_APP: 'service:app'
       - name: upload code couverage
-        uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v2
         with:
           version: v0.1.13
