@@ -1,6 +1,7 @@
 name: ci build
 on:
-  pull request:
+  push:
+  pull_request:
     types:
       - opned
       - reopned
