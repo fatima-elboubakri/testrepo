@@ -1,6 +1,5 @@
 name: CD Delevery
 on:
-  push:
   pull_request:
     types:
       - opned
@@ -10,10 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 'python:3.9-slim'
-
+    container: python:3.9-slim
     steps:
       - name: upload code couverage
       - uses: codecov/codecov-action@v2
-        with:
-          version: v0.1.13
