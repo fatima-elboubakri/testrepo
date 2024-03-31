@@ -15,10 +15,6 @@ jobs:
 
     steps:
       - name: Upload code coverage
-        run: |
-          # Add the command to upload code coverage here
-          # Example:
-          # codecov --token=<your_token>
         uses: codecov/codecov-action@v2
         with:
           version: v0.1.13
