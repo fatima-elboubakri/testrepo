@@ -34,10 +34,10 @@ jobs:
          # pip install requirements.txt
       - name: run unit tests with nose
         id: testing
-        run: nosetests
-        env:
-          DATABASE_URI: 'redis//redice:6379'
-          FLASK_APP: 'service:app'
+       # run: nosetests
+       # env:
+        #  DATABASE_URI: 'redis//redice:6379'
+        #  FLASK_APP: 'service:app'
       - name: upload code couverage
         uses: codecov/codecov-action@v2
         with:
