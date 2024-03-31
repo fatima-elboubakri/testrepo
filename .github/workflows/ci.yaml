@@ -9,7 +9,7 @@ on:
       - master
 jobs:
   build:
-    runs-on: ubunto-latest
+    runs-on: ubuntu-latest
     container: 'python:3.9-slim'
     services:
       redis:
