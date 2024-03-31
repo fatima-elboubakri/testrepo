@@ -1,20 +1,24 @@
-
 name: Publish stage
 on:
   push:
   pull_request:
     types:
-      - opned
-      - reopned
+      - opened
+      - reopened
     branches:
       - master
+
 jobs:
   build:
     runs-on: ubuntu-latest
     container: 'python:3.9-slim'
 
     steps:
-      - name: upload code couverage
-      - uses: codecov/codecov-action@v2
+      - name: Upload code coverage
+        run: |
+          # Add the command to upload code coverage here
+          # Example:
+          # codecov --token=<your_token>
+        uses: codecov/codecov-action@v2
         with:
           version: v0.1.13
